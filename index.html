@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+
+
+      /* Inquary btn popup styles */
+
+.sweep-btn {
+    padding: 12px 24px;
+    background-color: #333f48;
+    color: white;
+border-radius: 0.35rem;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sweep-btn i {
+    transition: color 0.3s ease;
+  }
+
+  .sweep-btn:hover {
+    background-color: #1b2226;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .sweep-btn:hover i {
+    color: #00c853;
+  }
+
+  .sweep-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(58,107,138,0.3), transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+  }
+
+  .sweep-btn:hover::before {
+    animation: sweep 1.4s ease-in-out alternate 2;
+  }
+
+
+  @keyframes sweep {
+    0%   { left: -75%; }
+    100% { left: 125%; }
+  }
+      /* Inquary btn popup styles END */
+
+
+
+      .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .thumbnail-btn img {
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+      border-radius: 0.35rem;
+        border: 2px solid transparent;
+        cursor: pointer;
+      }
+      .thumbnail-btn:hover img {
+        transform: scale(1.08);
+        border-color: white;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+      }
+      .thumbnail-btn.active img {
+        border-color: white;
+        box-shadow: 0 0 12px #dbd7d2;
+        opacity: 60%;
+        transform: scale(0.85);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .nav-btn {
+        background-color: #333F48;
+        color: white;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        border-radius: 9999px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+      }
+      .nav-btn:hover {
+        background-color: #4B5563;
+        box-shadow: 0 6px 8px rgba(75, 85, 99, 0.6);
+      }
+      .glass-btn {
+        background-color: #333F48;
+        color: white;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        border-radius: 9999px;
+        box-shadow: 0 4px 6px rgba(51, 63, 72, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      .glass-btn:hover {
+        background-color: #4B5563;
+        box-shadow: 0 6px 8px rgba(75, 85, 99, 0.7);
+      }
+      .thumbnails-wrapper {
+        position: relative;
+        overflow: hidden;
+        height: 384px;
+        width: 88px;
+      }
+      .thumbnails {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 16px;
+        transition: transform 0.3s ease;
+      }
+      @media (min-width: 1024px) {
+        .thumbnails {
+          flex-direction: column;
+        }
+        .thumbnails-wrapper {
+          width: auto;
+        }
+      }
+      .thumbnails-mobile {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .thumbnails-mobile::-webkit-scrollbar {
+        height: 6px;
+      }
+      .thumbnails-mobile::-webkit-scrollbar-thumb {
+        background-color: #333f48;
+        border-radius: 9999px;
+      }
+      .thumbnails-mobile::-webkit-scrollbar-track {
+        background: transparent;
+      }
+        /* Mobile menu transitions */
+      #mobileMenu {
+        transition: all 0.3s ease;
+      }
+                    
+      /* New styles for image zoom and popup */
+      .sample-img-container {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .sample-img-container:hover .sample-img {
+        transform: scale(1.05);
+      }
+      .sample-img-container:hover .zoom-overlay {
+        opacity: 1;
+      }
+      .sample-img {
+        transition: transform 0.3s ease;
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .zoom-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .zoom-icon {
+        color: white;
+        font-size: 24px;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 12px;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+      }
+      .sample-img-container:hover .zoom-icon {
+        transform: scale(1.2);
+      }
+                    
+      /* Image popup styles */
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 9999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+      }
+      .popup-content {
+        position: relative;
+        padding-bottom: 4px;
+ padding-top: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box; /* ensures padding doesn't overflow */
+      }
+
+
+      .popup-img {
+        height: calc(100vh - 2px);
+        object-fit: contain;
+      }
+      .close-popup {
+        position: absolute;
+  top: 0;
+  right: -34px; /* 30px icon + 4px space */
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  z-index: 10000;
+      }
+         
+
+
+
+
+           
+      :root {
+        --en-primary-dark: #333f48	;
+        --en-primary-medium: #0D2C54;
+        --en-primary-light: #5C6B7E;
+        --en-primary-verylight: #8E9CB3;
+--en-primary-verylight1: #eef2ff;
+        --en-subtext-color: #ddd9d4;
+        --en-title-color: #2a2f39;
+      }
+
+      .en-section-content {
+        transition: all 0.35s ease;
+        overflow: visible;
+        height: auto;
+        opacity: 100;
+        transform: none;
+      }
+
+      body {
+        background-color: #f3f4f6;
+        font-family: 'Inter', sans-serif;
+        color: var(--en-primary-dark);
+        padding:  rem;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', sans-serif;
+      }
+
+      .en-fabric-btn,
+      .en-embellish-btn {
+        border: 2px solid var(--en-primary-dark);
+        background-color: white;
+        color: var(--en-primary-dark);
+        border-radius: 0.75rem;
+        width: 12rem;
+        padding: 0.5rem 1rem;
+        text-align: left;
+        transition: all 0.3s ease;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        background-color: white;
+        color: var(--en-title-color);
+        border-radius: 0.75rem;
+        border: 1px solid #f9fafb;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        box-shadow: 0.5px 4px 8px rgba(42, 47, 57, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.8);
+        transform: translateY(-2px);
+      }
+
+      .en-section-2 .en-fabric-btn,
+      .en-section-2 .en-embellish-btn {
+        border-color: var(--en-primary-medium);
+        color: var(--en-primary-medium);
+      }
+
+      .en-section-3 .en-fabric-btn,
+      .en-section-3 .en-embellish-btn {
+        border-color: var(--en-primary-light);
+        color: var(--en-primary-light);
+      }
+
+      .en-section-4 .en-fabric-btn,
+      .en-section-4 .en-embellish-btn {
+        border-color: var(--en-primary-verylight);
+        color: var(--en-primary-verylight);
+      }
+      .en-section-5 .en-fabric-btn,
+      .en-section-5 .en-embellish-btn {
+        border-color: var(--en-primary-verylight);
+        color: var(--en-primary-verylight);
+      }
+
+      @media (max-width: 768px) {
+        .en-fabric-btn,
+        .en-embellish-btn {
+          width: 100%;
+        }
+      }
+
+      .en-fabric-btn:hover,
+      .en-fabric-btn.en-selected,
+      .en-embellish-btn:hover,
+      .en-embellish-btn.en-selected {
+        background-color: var(--en-primary-dark);
+        color: white;
+        padding-bottom:1.5rem;
+      }
+
+      .en-section-2 .en-fabric-btn:hover,
+      .en-section-2 .en-fabric-btn.en-selected,
+      .en-section-2 .en-embellish-btn:hover,
+      .en-section-2 .en-embellish-btn.en-selected {
+        background-color: var(--en-primary-medium);
+      }
+
+      .en-section-3 .en-fabric-btn:hover,
+      .en-section-3 .en-fabric-btn.en-selected,
+      .en-section-3 .en-embellish-btn:hover,
+      .en-section-3 .en-embellish-btn.en-selected {
+        background-color: var(--en-primary-light);
+      }
+
+      .en-section-4 .en-fabric-btn:hover,
+      .en-section-4 .en-fabric-btn.en-selected,
+      .en-section-4 .en-embellish-btn:hover,
+      .en-section-4 .en-embellish-btn.en-selected {
+        background-color: var(--en-primary-verylight);
+      }
+
+      .en-section-5 .en-fabric-btn:hover,
+      .en-section-5 .en-fabric-btn.en-selected,
+      .en-section-5 .en-embellish-btn:hover,
+      .en-section-5 .en-embellish-btn.en-selected {
+        background-color: var(--en-primary-verylight);
+      }
+
+      .en-fabric-icon,
+      .en-embellish-icon {
+        position: absolute;
+        bottom: 0.75rem;
+        right: 0.75rem;
+        width: 26px;
+        height: 26px;
+        display: none;
+        color: white;
+      }
+
+      .en-fabric-btn:hover .en-fabric-icon,
+      .en-fabric-btn.en-selected .en-fabric-icon,
+      .en-embellish-btn:hover .en-embellish-icon,
+      .en-embellish-btn.en-selected .en-embellish-icon {
+        display: block;
+      }
+.en-fabric-details,
+      .en-embellish-details {
+        display: none;
+        font-size: 0.75rem;
+        color: var(--en-subtext-color);
+        margin-top: 0.25rem;
+  cursor: pointer;
+  user-select: none;
+      }
+
+.en-fabric-details:hover {
+  text-decoration: underline;
+  color: var(--en-primary-verylight);
+  cursor: pointer;
+  user-select: none;
+
+}
+
+
+      .en-fabric-btn:hover .en-fabric-details,
+      .en-fabric-btn.en-selected .en-fabric-details,
+      .en-embellish-btn:hover .en-embellish-details,
+      .en-embellish-btn.en-selected .en-embellish-details {
+        display: block;
+      }
+      .en-fabric-option {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+  cursor: pointer;
+  user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .en-fabric-option {
+          width: auto;
+        }
+      }
+
+      .en-fabric-option input[type="radio"] {
+        accent-color: var(--en-primary-dark);
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+      }
+
+      .en-section-2 .en-fabric-option input[type="radio"] {
+        accent-color: var(--en-primary-medium);
+      }
+
+      .en-section-3 .en-fabric-option input[type="radio"] {
+        accent-color: var(--en-primary-light);
+      }
+
+      .en-section-4 .en-fabric-option input[type="radio"] {
+        accent-color: var(--en-primary-verylight);
+      }
+
+      .en-section-5 .en-fabric-option input[type="radio"] {
+        accent-color: var(--en-primary-verylight);
+      }
+
+      .en-fabric-name-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      .en-embellishment-section {
+        display: none;
+      }
+
+   .en-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  padding-left: 8px;
+  border: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+  color: #334155;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.en-section-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(173, 216, 230, 0.1) 0%,
+    rgba(173, 216, 230, 0.4) 50%,
+    rgba(173, 216, 230, 0.1) 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+.en-section-header:hover::before {
+  animation: sweep 0.7s ease-out forwards;
+}
+
+@keyframes sweep {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 130%;
+  }
+}
+
+      .en-toggle-icon {
+        transition: all 0.3s ease;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--en-primary-dark);
+        position: relative;
+        font-size: 28px;
+        font-weight: 400;
+      }
+
+      .en-section-2 .en-toggle-icon {
+        color: var(--en-primary-medium);
+      }
+
+      .en-section-3 .en-toggle-icon {
+        color: var(--en-primary-light);
+      }
+
+      .en-section-4 .en-toggle-icon {
+        color: var(--en-primary-verylight);
+      }
+      .en-section-5 .en-toggle-icon {
+        color: var(--en-primary-verylight);
+      }
+
+      .en-toggle-icon::after {
+        content: "-";
+        position: absolute;
+        transition: all 0.3s ease;
+      }
+
+      .en-toggle-icon.en-active::after {
+        content: "+";
+      }
+
+      .en-toggle-icon:hover {
+        opacity: 0.8;
+        transform: scale(1.2);
+      }
+
+      .en-section-content {
+        transition: all 0.35s ease;
+        overflow: hidden;
+      }
+
+      .en-section-content.en-collapsed {
+        height: 0;
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      .en-popup-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0,0,0,0.6);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .en-popup-box {
+        display: inline-block;
+        max-width: 95vw;
+        height: auto;
+        background: white;
+        border-radius: 1rem;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        width: auto;
+        padding: 1rem;
+        border: 2px solid #e5e7eb;
+      }
+
+      .en-popup-box iframe {
+        border: none;
+        display: block;
+        max-width: 100%;
+        border-radius: 0rem;
+        border: 0px solid #d1d5db;
+        padding: 0rem;
+        background: #f9fafb;
+      }
+
+     .en-close-popup {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 34px;
+  font-weight: bold;
+  background: white;
+  color: #333;
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+  z-index: 10001;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 0;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.en-close-popup:hover {
+  background: #333f48;
+  color: white;
+ 
+}
+
+
+      @media (min-width: 1024px) {
+        .en-popup-box {
+          width: 25% !important;
+          max-width: 25% !important;
+        }
+        .en-popup-box iframe {
+          width: 100% !important;
+        }
+      }
+
+      @media (max-width: 1023px) {
+        .en-popup-box {
+          width:100% !important;
+          max-width: 100% !important;
+        }
+        .en-popup-box iframe {
+          width: 100% !important;
+        }
+      }
+
+      .en-header-icon {
+        margin-right: 12px;
+        color: var(--en-primary-dark);
+        font-size: 24px;
+      }
+
+      .en-section-2 .en-header-icon {
+        color: var(--en-primary-medium);
+      }
+
+      .en-section-3 .en-header-icon {
+        color: var(--en-primary-light);
+      }
+
+      .en-section-4 .en-header-icon {
+        color: var(--en-primary-verylight);
+      }
+      .en-section-5 .en-header-icon {
+        color: var(--en-primary-verylight);
+      }
+
+      .en-content-title {
+        padding-bottom:1.5rem;
+font-size: 0.8rem;
+      }
+
+      .en-hr-gradient {
+        border: 0;
+        height: 1px;
+        background: linear-gradient(90deg, #0D2C54, #a2b9d2, #a2b9d2,#ffffff );
+      }
+
+ .en-hr-gradient1 {
+        border: 0;
+        height: 1px;
+        background: linear-gradient(90deg, #183157, #1E4068, #1E4068,#183157 );
+      }
+
+      .en-section-2 .en-hr-gradient {
+        background: linear-gradient(90deg, #0D2C54, #5C6B7E, #ffffff);
+      }
+
+      .en-section-3 .en-hr-gradient {
+        background: linear-gradient(90deg, #5C6B7E, #8E9CB3, #ffffff);
+      }
+
+      .en-section-4 .en-hr-gradient {
+        background: linear-gradient(90deg, #8E9CB3, #B8C6D9, #ffffff);
+      }
+
+      .en-section-5 .en-hr-gradient {
+        background: linear-gradient(90deg, #8E9CB3, #B8C6D9, #ffffff);
+      }
+
+      .en-section-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: var(--en-primary-dark);
+        text-align: center;
+        position: relative;
+        padding-bottom: 0.5rem;
+      }
+
+      .en-section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--en-primary-dark);
+      }
+
+      .en-section-2 .en-section-title {
+        color: var(--en-primary-medium);
+      }
+
+      .en-section-2 .en-section-title::after {
+        background: var(--en-primary-medium);
+      }
+
+      .en-section-3 .en-section-title {
+        color: var(--en-primary-light);
+      }
+
+      .en-section-3 .en-section-title::after {
+        background: var(--en-primary-light);
+      }
+
+      .en-section-4 .en-section-title {
+        color: var(--en-primary-verylight);
+      }
+
+      .en-section-4 .en-section-title::after {
+        background: var(--en-primary-verylight);
+      }
+      .en-section-5 .en-section-title {
+        color: var(--en-primary-verylight);
+      }
+
+      .en-section-5 .en-section-title::after {
+        background: var(--en-primary-verylight);
+      }
+
+      .en-section-container {
+        margin-bottom: 2.5rem;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .en-section-1 .en-section-container {
+        border-top: 4px solid var(--en-primary-verylight1); 
+      }
+
+      .en-section-2 .en-section-container {
+        border-top: 4px solid var(--en-primary-medium);
+      }
+
+      .en-section-3 .en-section-container {
+        border-top: 4px solid var(--en-primary-light);
+      }
+
+      .en-section-4 .en-section-container {
+        border-top: 4px solid var(--en-primary-verylight);
+      }
+      .en-section-5 .en-section-container {
+        border-top: 4px solid var(--en-primary-verylight);
+      }
+
+      /* Size options */
+      .en-size-btn {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        min-width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #e2e8f0;
+        background-color: #f8fafc;
+        color: #334155;
+        font-weight: 500;
+        font-size: 0.875rem;
+      }
+
+      .en-size-btn:hover {
+        background-color: #f1f5f9;
+        border-color: #cbd5e1;
+transform: scale(1.05);
+      }
+
+      .en-size-btn.en-active {
+        border-color: White;
+        background-color: #333f48;
+        color: white;
+        box-shadow: 0 1px 3px rgba(37, 99, 235, 0.2);
+        transform: translateY(-1px);
+transform: scale(1.05);
+      }
+
+      .en-fit-scale {
+        background: linear-gradient(90deg, #051220, #2d425a, #a5bcd6);
+        height: 8px;
+        border-radius: 4px;
+        position: relative;
+        margin: 12px 0;
+      }
+
+      .en-fit-handle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-color: white;
+        border: 2px solid #2a2f39;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        cursor: grab;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .en-fit-handle:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .en-fit-handle:active {
+        cursor: grabbing;
+      }
+
+
+
+
+
+/* Size chart Button */
+
+.animated-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #333f48; /* Pantone 432C */
+  color: white;
+  padding: 5px 11px;
+  border-radius: 833px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-button .arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.animated-button .text {
+  opacity: 100;
+  transform: translateX(0px);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.animated-button:hover .arrow {
+  transform: translateX(5px);
+}
+
+.animated-button:hover .text {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+.animated-button:hover {
+  opacity: 1;
+transform: scale(1.01);
+ 
+
+  background-color: #556b8a; /* Pantone 432C */
+
+
+}
+
+
+
+
+
+
+/* Footer */
+
+
+ footer {
+             width: 100%;
+    padding: 10px; /* adjust padding as needed */
+    background: linear-gradient(135deg, #1333f48 0%, #122a4d 100%);
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .footer-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
+            background-color: rgba(255,255,255,0.2);
+            transform: scale(1.02);
+        }
+        .btn-action {
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ padding: 5px 8px;
+        }
+        .btn-action:hover {
+           
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+        transform: translateY(0px) scale(1.08);
+        }
+        .social-icon {
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .social-icon:hover {
+            transform: translateY(0px) scale(1.15);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+        .footer-column {
+            position: relative;
+        }
+        .footer-column:not(:last-child):after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 15%;
+            height: 70%;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2), transparent);
+        }
+        .subscribe-btn {
+            transition: all 0.4s ease;
+        }
+        .subscribe-btn:hover {
+            background-color: #e63946 !important;
+            transform: translateX() rotate(-5deg);
+        }
+        .brand-name {
+        
+            letter-spacing: 0.05em;
+            position: relative;
+            display: inline-block;
+        }
+        .brand-name:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #e63946, transparent);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        .brand-name:hover:after {
+            transform: scaleX(1);
+        }
+
+    </style>
+  </head>
+  <body class="bg-[#F7F6F3] text-gray-800 font-sans">
+    <header class="bg-[#333f48] shadow-sm py-4 px-4 md:px-8 flex justify-between items-center text-white">
+     
+
+<div style="font-family: Arial, sans-serif; color: white; font-size: 1.25rem; text-transform: uppercase;" class="tracking-wider flex items-center">
+  <img src="AO_ENCR_Logos-02.png" alt=" " style="width: 36px; height: 36x; margin-right: 0.5rem;">
+ &nbsp; Product Catalog
+</div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuButton"  class="md:hidden text-white focus:outline-none " >
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-6">
+     <a href="#" class="text-sm hover:text-[#333F48] transition-colors duration-300"> </a>
+           <a href="#" class="text-sm hover:text-[#acbdd6] transition-colors duration-300"> Home</a>
+          <a href="#" class="text-sm hover:text-[#acbdd6] transition-colors duration-300"> | </a>
+          <a href="#" class="text-sm hover:text-[#acbdd6] transition-colors duration-300">Teamwear </a>
+          <a href="#" class="text-sm hover:text-[#acbdd6] transition-colors duration-300">|</a>
+          <a href="#" class="text-sm hover:text-[#acbdd6] transition-colors duration-300">Lifestyle</a>
+        <div class="relative">
+          <input
+              type="text"
+              placeholder="Search Product"
+              class="py-1 px-4 pr-8 rounded-full border border-gray-300 focus:outline-none focus:border-[#333F48] focus:ring-1 focus:ring-[#d6deea] text-sm"
+          />
+          <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-[#333F48]">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <a href="#" class="text-sm hover:text-[#acbdd6] transition-colors duration-300"><i class="fas fa-user mr-2"></i></a>
+      </div>
+
+      <!-- Mobile Menu (Hidden by default) -->
+     <div id="mobileMenu" class="hidden md:hidden absolute top-16 left-0 right-0 shadow-lg z-50 px-8 py-4 transition-all duration-300 ease-in-out" style="background-color: white;">
+
+        <div class="flex flex-col space-y-4">
+          <a href="#" class="text-sm hover:text-[#acbdd6] transition-colors duration-300"> </a>
+          <a href="#" style="color: #333f48; class="text-sm hover:text-[#acbdd6] transition-colors duration-300"> Home </a>
+          <a href="#" style="color: #333f48;  class="text-sm hover:text-[#acbdd6] transition-colors duration-300">Teamwear </a>
+       
+          <a href="#" style="color: #333f48;  class="text-sm hover:text-[#acbdd6] transition-colors duration-300">Lifestyle</a>
+          <div class="relative mt-2">
+            <input
+                type="text"
+                placeholder="Search..."
+                class="py-2 px-4 pr-8 rounded-full border border-gray-300 focus:outline-none focus:border-[#333F48] w-full"
+            />
+           <button  class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500  hover:text-#acbdd6">
+
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <a href="#"  class="text-sm hover:text-[#acbdd6] transition-colors duration-300 flex items-center mt-2">
+           <i class="fas fa-user mr-2"></i> 
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
+      <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Left Column -->
+        <div class="w-full lg:w-[55%] flex flex-col gap-6">
+          <div class="flex flex-col md:flex-row gap-6">
+                        <!-- Mobile Title and Subtitle -->
+            <div class="lg:hidden mb-4">
+              <h1 class="text-2xl font-serif text-indigo-950">Breeze Windbreaker</h1>
+              <p class="text-gray-600">Product # : PRO-205</p>
+            </div>
+                        <!-- Mobile Thumbnails horizontal scroll -->
+            <div class="thumbnails-mobile lg:hidden mb-2" aria-label="Product thumbnails">
+              <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(0)" aria-label="Thumbnail 1">
+                <img src="107.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 1" />
+              </button>
+              <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(1)" aria-label="Thumbnail 2">
+                <img src="108.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 2" />
+              </button>
+              <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(2)" aria-label="Thumbnail 3">
+                <img src="109.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 3" />
+              </button>
+              <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(3)" aria-label="Thumbnail 4">
+                <img src="110.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 4" />
+              </button>
+                  <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(5)" role="listitem aria-label="Thumbnail 6">
+                    <img src="112.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 6" />
+                  </button>
+
+                  <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(5)" role="listitem aria-label="Thumbnail 6">
+                    <img src="111.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 6" />
+                  </button>
+              <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(6)" aria-label="Thumbnail 7">
+                <img src="113.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 7" />
+              </button>
+              <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(7)" aria-label="Thumbnail 8">
+                <img src="114.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 8" />
+              </button>
+            </div>
+                        <!-- Desktop Thumbnails with navigation buttons -->
+            <div class="hidden lg:flex flex-col items-center gap-3" aria-label="Thumbnail navigation">
+              <button class="nav-btn arrow-up" aria-label="Scroll thumbnails up" title="Scroll thumbnails up" onclick="scrollUp()">
+                <i class="fas fa-chevron-up text-lg"></i>
+              </button>
+                                        <div class="thumbnails-wrapper" aria-live="polite" aria-atomic="true" aria-relevant="all" aria-label="Product thumbnails">
+                <div class="thumbnails" role="list">
+                  <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(0)" role="listitem" aria-label="Thumbnail 1">
+                    <img src="107.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 1" />
+                  </button>
+                  <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(1)" role="listitem" aria-label="Thumbnail 2">
+                    <img src="108.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 2" />
+                  </button>
+                  <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(2)" role="listitem" aria-label="Thumbnail 3">
+                    <img src="109.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 3" />
+                  </button>
+                  <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(3)" role="listitem" aria-label="Thumbnail 4">
+                    <img src="110.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 4" />
+                  </button>
+                  <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(4)" role="listitem" aria-label="Thumbnail 5">
+                    <img src="112.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 5" />
+                  </button>
+                  <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(5)" role="listitem aria-label="Thumbnail 6">
+                    <img src="111.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 6" />
+                  </button>
+                  <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(6)" role="listitem" aria-label="Thumbnail 7">
+                    <img src="113.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 7" />
+                  </button>
+                  <button class="thumbnail-btn w-20 h-20 flex-shrink-0" onclick="setImage(7)" role="listitem" aria-label="Thumbnail 8">
+                    <img src="114.jpg" class="w-full h-full object-cover rounded-md" alt="Thumbnail 8" />
+                  </button>
+                </div>
+              </div>
+                                        <button class="nav-btn arrow-down" aria-label="Scroll thumbnails down" title="Scroll thumbnails down" onclick="scrollDown()">
+                <i class="fas fa-chevron-down text-lg"></i>
+              </button>
+            </div>
+                        <!-- Main Image -->
+            <div class="w-full" id="main-image">
+              <div class="relative rounded-xl overflow-hidden">
+              
+ <div style="position: absolute; top: 1rem; left: 1rem; background-color: #333f48; color: white; font-weight: bold; padding: 0.25rem 0.75rem; font-size: 0.75rem; border-radius: 9999px; z-index: 10; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);">
+ PRO-205
+</div>
+
+
+
+                <img
+                  id="mainProductImage"
+                  src="1.png"
+                  class="w-full h-full object-cover aspect-square fade-in bg-white transition-all duration-300 rounded-xl"
+                  alt="Main Product Image"
+                />
+                <button
+                  id="toggleSlideshow"
+                  class="glass-btn absolute top-3 right-3 p-2 rounded-full shadow-lg flex items-center justify-center"
+                  aria-label="Toggle Slideshow"
+                  title="Toggle Slideshow"
+                >
+                  <i class="fas fa-pause"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+                    <!-- Sample Image Grid for Desktop -->
+          <div class="mt-6 hidden lg:block">
+            <h2 class="text-xl font-semibold text-indigo-950 mb-4"> </h2>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="sample-img-container rounded-lg shadow-md overflow-hidden" onclick="openPopup('DSCF1571.jpg')">
+                <img src="DSCF1571.jpg" alt="Sample 1" class="sample-img" />
+                <div class="zoom-overlay">
+                  <i class="fas fa-search-plus zoom-icon"></i>
+                </div>
+              </div>
+              <div class="sample-img-container rounded-lg shadow-md overflow-hidden" onclick="openPopup('DSCF1572.jpg')">
+                <img src="DSCF1572.jpg" alt="Sample 2" class="sample-img" />
+                <div class="zoom-overlay">
+                  <i class="fas fa-search-plus zoom-icon"></i>
+                </div>
+              </div>
+              <div class="sample-img-container rounded-lg shadow-md overflow-hidden" onclick="openPopup('DSCF1573.jpg')">
+                <img src="DSCF1573.jpg" alt="Sample 3" class="sample-img" />
+                <div class="zoom-overlay">
+                  <i class="fas fa-search-plus zoom-icon"></i>
+                </div>
+
+              </div>
+
+
+ <div class="sample-img-container rounded-lg shadow-md overflow-hidden" onclick="openPopup('DSCF1574.jpg')">
+                <img src="DSCF1574.jpg" alt="Sample 2" class="sample-img" />
+                <div class="zoom-overlay">
+                  <i class="fas fa-search-plus zoom-icon"></i>
+                </div>
+              </div> <div class="sample-img-container rounded-lg shadow-md overflow-hidden" onclick="openPopup('DSCF1575.jpg')">
+                <img src="DSCF1575.jpg" alt="Sample 2" class="sample-img" />
+                <div class="zoom-overlay">
+                  <i class="fas fa-search-plus zoom-icon"></i>
+                </div>
+              </div> 
+             
+            </div>
+          </div>
+        </div>
+
+    <!-- Right Column -->
+        <div class="w-full lg:w-[45%] mt-6 lg:mt-0 bg-white p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
+          <h1 class="text-3xl font-serif text-indigo-950 mb-2 hidden lg:block">Breeze Windbreaker</h1>
+          <p class="text-gray-600 hidden lg:block">Product # : PRO-205</p>
+          <div class="flex text-amber-400 mt-4 mb-2">
+          
+ <div class="flex items-center">
+
+<i class="fas fa-folder text-2xl mb-1" style="font-size: 85%; color: #8799b2; position: relative; top: 2px"></i>  <span class="text-sm text-gray-600 ml-2">Lifestyle / Outerwear</span>
+</div>
+
+
+ <br>
+          </div>
+          <div class="bg-indigo-50 rounded-xl p-4 mb-6">
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-indigo-950">$60.00</span>
+              <span class="text-gray-500 line-through">$65.00</span>
+             <span style="background-color: #f24b4b; color: white; font-size: 0.75rem; font-weight: bold; padding: 0.25rem 0.5rem; border-radius: 999.25rem;">
+  No MOQ
+</span>
+            </div>
+            <p class="text-xs text-skyblue-100 mt-1">Seasonal offer</p>
+          </div>
+          <p class="text-gray-700 mb-6">
+         • Bulk shipping, sorted upon request<br>
+• Custom online store, shipping options include direct-to-customer or bulk shipping, sorted upon request
+          </p>
+
+
+
+
+
+
+
+
+<button class="sweep-btn">
+  <i class="fas fa-paper-plane"></i> Inquiry
+</button>
+
+
+
+
+
+
+
+ 
+
+
+   <center>  <span class="text-sm text-gray-600 ml-2">(Sales & Order processing)</span> </center>
+<br>
+
+          <!-- Section 1 - Original Style -->
+          <div class="en-section-1">
+            <div class="max-w-4xl mx-auto bg-white rounded-xl en-section-container p-6">
+              <div class="en-section-header" id="en-section-header-1" onclick="toggleSection(1)">
+                <div class="flex items-center">
+                  <i class="fas fa-palette" style="font-size: 85%;"></i>
+                  <h2 class="">&nbsp; Fabrics & Embellishment</h2>
+                </div>
+                <div class="en-toggle-icon" id="en-toggle-icon-1"></div>	
+              </div>
+
+              <div class="en-section-content" id="en-section-content-1">
+                <div class="mb-6">
+                  <h3 class="en-content-title">● Fabric
+                  <hr class="en-hr-gradient"></h3>
+                  <div class="flex flex-col md:flex-row gap-4">
+                    <label class="en-fabric-option">
+                      <input type="radio" name="en-fabric-1" value="taffeta" />
+                      <div class="en-fabric-btn" >
+                        <div class="en-fabric-name-container">
+                          <span class="font-medium">Taffeta</span>
+                          <i class="fas fa-swatchbook en-fabric-icon"></i>
+                        </div>
+                        
+
+
+<p class="en-fabric-details cursor-pointer" data-url="taf.html"
+   onclick="showEnPopup(this.getAttribute('data-url'))">
+  Fabric Details
+</p>
+
+
+
+
+
+                      </div>
+                    </label>	
+                    <label class="en-fabric-option">
+                      <input type="radio" name="en-fabric-1" value="temptek" />
+                      <div class="en-fabric-btn">
+                        <div class="en-fabric-name-container">
+                          <span class="font-medium">Temptek</span>
+                          <i class="fas fa-swatchbook en-fabric-icon"></i>
+                        </div>
+                       <p class="en-fabric-details cursor-pointer" data-url="FabTeml.html"
+   onclick="showEnPopup(this.getAttribute('data-url'))">
+  Fabric Details
+</p>
+
+
+
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="mb-6 en-embellishment-section" id="en-embellishment-section-1">
+                  <h3 class="en-content-title">● Embellishment
+                  <hr class="en-hr-gradient"></h3>
+                  <div class="flex flex-col md:flex-row gap-4 flex-wrap">
+                    <label class="en-fabric-option">
+                      <div class="en-embellish-btn" data-url="emb.html">
+                        <div class="en-fabric-name-container">
+                          <span class="font-medium">Sublimation</span>
+                          <i class="fas fa-fill-drip en-embellish-icon"></i>
+                        </div>
+                        <div class="en-embellish-details">Embellishment Details</div>
+                      </div>
+                    </label>
+                    <label class="en-fabric-option">
+                      <div class="en-embellish-btn" data-url="embroi.html">
+                        <div class="en-fabric-name-container">
+                          <span class="font-medium">Embroidery</span>
+                          <i class="fas fa-fill-drip en-embellish-icon"></i>
+                        </div>
+                        <div class="en-embellish-details">Embellishment Details</div>
+                      </div>
+                    </label>
+                    <label class="en-fabric-option">
+                      <div class="en-embellish-btn" data-url="woven.html">
+                        <div class="en-fabric-name-container">
+                          <span class="font-medium">Woven Label</span>
+                          <i class="fas fa-fill-drip en-embellish-icon"></i>
+                        </div>
+                        <div class="en-embellish-details">Embellishment Details</div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2 - Dark Blue Theme -->
+          <div class="en-section-21">
+            <div class="max-w-4xl mx-auto bg-white rounded-xl en-section-container p-6">
+              <div class="en-section-header" id="en-section-header-2" onclick="toggleSection(2)">
+                <div class="flex items-center">
+                  <i class="fas fa-ruler-combined text-2xl mb-1" style="font-size: 85%;"></i>
+                  <h2 class=""> &nbsp; Fit & Sizes Options</h2>
+                </div>
+                <div class="en-toggle-icon" id="en-toggle-icon-2"></div>
+              </div>
+
+              <div class="en-section-content" id="en-section-content-2">
+                <div class="mb-1">
+                  <h3 class="en-content-title">● Available Sizes
+                  <hr class="en-hr-gradient"></h3>
+                </div>
+
+                <div class="en-size-options mb-4 ">
+                  <div class="en-size-grid grid grid-cols-5 gap-2 mb-6 ml-2 mr-6">
+                    <button class="en-size-btn py-2 px-3 rounded-md border border-gray-200 bg-[#edf1f6] text-gray-700 font-medium text-sm">
+                      YXS
+                    </button>
+                    <button class="en-size-btn py-2 px-3 rounded-md border border-gray-200 bg-[#edf1f6] text-gray-700 font-medium text-sm">
+                      YS
+                    </button>
+                    <button class="en-size-btn py-2 px-3 rounded-md border border-gray-200 bg-[#edf1f6] text-gray-700 font-medium text-sm">
+                      YM
+                    </button>
+                    <button class="en-size-btn py-2 px-3 rounded-md border border-gray-200 bg-[#edf1f6] text-gray-700 font-medium text-sm">
+                      YL
+                    </button>
+                    <button class="en-size-btn py-2 px-3 rounded-md border border-gray-200 bg-[#edf1f6] text-gray-700 font-medium text-sm">
+                      YXL
+                    </button>
+                    <button class="en-size-btn py-2 px-3 rounded-md border border-gray-200 bg-[#edf1f6] text-gray-700 font-medium text-sm">
+                      S
+                    </button>
+                    <button class="en-size-btn py-2 px-3 rounded-md border border-gray-200 bg-[#edf1f6] text-gray-700 font-medium text-sm">
+                      M
+                    </button>
+                    <button class="en-size-btn py-2 px-3 rounded-md border border-gray-200 bg-[#edf1f6] text-gray-700 font-medium text-sm">
+                      L
+                    </button>
+                    <button class="en-size-btn py-2 px-3 rounded-md border border-gray-200 bg-[#edf1f6] text-gray-700 font-medium text-sm">
+                      XL
+                    </button>
+                    <button class="en-size-btn py-2 px-3 rounded-md border border-gray-200 bg-[#edf1f6] text-gray-700 font-medium text-sm">
+                      XXL
+                
+                    </button>
+                  </div>
+<button class="animated-button">
+  <span class="arrow">»</span>
+
+  <span class="button text">Size Chart &nbsp;</span>
+</button>
+
+                </div>
+
+                <div class="en-fit-section">
+                  <h3 class="en-fit-title text-sm font-medium text-gray-700 mb-3 tracking-wider">FIT </h3>
+                  <div class="en-fit-scale w-full relative mb-2">
+                    <div class="en-fit-handle"></div>
+                  </div>
+                  <div class="en-fit-labels flex justify-between text-xs text-gray-500 mb-6">
+                    <span class="font-medium">Runs Small</span>
+                    <span class="font-medium">True to Size</span>
+                    <span class="font-medium">Runs Large</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+          </div>
+
+          <!-- Section 3 - Gray-Blue Theme -->
+          <div class="en-section-31">
+            <div class="max-w-4xl mx-auto bg-white rounded-xl en-section-container p-6">
+              <div class="en-section-header" id="en-section-header-3" onclick="toggleSection(3)">
+                <div class="flex items-center">
+                  <i class="fas fa-tags text-2xl mb-1" style="font-size: 100%;"></i>
+                  <h2 class=" "> &nbsp; Product Details </h2>
+                </div>
+                <div class="en-toggle-icon" id="en-toggle-icon-3"></div>
+              </div>
+
+              <div class="en-section-content" id="en-section-content-3">
+                <div class="mb-6">
+                  <h3 class="en-content-title">● Description
+                  <hr class="en-hr-gradient"></h3>
+
+<div style="width: 100%; font-family: 'Quicksand', sans-serif; font-size: 12px; box-sizing: border-box; word-wrap: break-word; text-align: justify; color: #283039;">
+
+                    <p>Customizable Design: Personalize with team colors, logos, & graphics
+Windproof: Shields against harsh winds for ultimate protection
+Water Resistant: Repels rain & moisture to keep you dry
+Full-Length Front Zipper: Easy layering for ever-changing weather conditions
+Zippered Pockets: Secure storage for essentials while on the go
+Relaxed Fit: A generous cut provides maximum comfort & unrestricted mobility
+Sublimated Designs: Fully customizable with limitless design options
+Ribbed Cuffs & Hem: Maintain shape & provide a snug fit to keep warmth in
+Adjustable lightweight Hood: Provides extra warmth & coverage
+UPF Sun Protection: Protects your skin from harmful UV rays
+
+</p>
+                  </div>
+
+
+                  <br><br>
+                  <h3 class="en-content-title">● Features
+                  <hr class="en-hr-gradient"></h3>
+                  <div style="width: 100%; font-family: 'Quicksand', sans-serif; font-size: 12px; box-sizing: border-box; word-wrap: break-word;">
+                    <p>
+<ul style="list-style: none; padding: 0; margin: 0; font-family: sans-serif;  line-height: 1.6; color: #283039;">
+  <li style="margin-bottom: 10px;">
+    <i class="fas fa-check-circle" style="color: #333f48; margin-right: 8px;"></i>
+    Customizable Design: Personalize with team colors, logos, & graphics
+  </li>
+  <li style="margin-bottom: 10px;">
+    <i class="fas fa-check-circle" style="color: #333f48; margin-right: 8px;"></i>
+    Windproof: Shields against harsh winds for ultimate protection
+  </li>
+  <li style="margin-bottom: 10px;">
+    <i class="fas fa-check-circle" style="color: #333f48; margin-right: 8px;"></i>
+    Water Resistant: Repels rain & moisture to keep you dry
+  </li>
+  <li style="margin-bottom: 10px;">
+    <i class="fas fa-check-circle" style="color: #333f48; margin-right: 8px;"></i>
+    Full-Length Front Zipper: Easy layering for ever-changing weather conditions
+  </li>
+  <li style="margin-bottom: 10px;">
+    <i class="fas fa-check-circle" style="color: #333f48; margin-right: 8px;"></i>
+    Zippered Pockets: Secure storage for essentials while on the go
+  </li>
+  <li style="margin-bottom: 10px;">
+    <i class="fas fa-check-circle" style="color: #333f48; margin-right: 8px;"></i>
+    Relaxed Fit: A generous cut provides maximum comfort & unrestricted mobility
+  </li>
+  <li style="margin-bottom: 10px;">
+    <i class="fas fa-check-circle" style="color: #333f48; margin-right: 8px;"></i>
+    Sublimated Designs: Fully customizable with limitless design options
+  </li>
+  <li style="margin-bottom: 10px;">
+    <i class="fas fa-check-circle" style="color: #333f48; margin-right: 8px;"></i>
+    Ribbed Cuffs & Hem: Maintain shape & provide a snug fit to keep warmth in
+  </li>
+  <li style="margin-bottom: 10px;">
+    <i class="fas fa-check-circle" style="color: #333f48; margin-right: 8px;"></i>
+    Adjustable Lightweight Hood: Provides extra warmth & coverage
+  </li>
+  <li style="margin-bottom: 10px;">
+    <i class="fas fa-check-circle" style="color: #333f48; margin-right: 8px;"></i>
+    UPF Sun Protection: Protects your skin from harmful UV rays
+  </li>
+</ul>
+
+</p>
+                  </div>
+
+                  <br><br>
+                  <h3 class="en-content-title">● Who We Made This For
+                  <hr class="en-hr-gradient"></h3>
+                  <div style="width: 100%; font-family: 'Quicksand', sans-serif; font-size: 12px; box-sizing: border-box; word-wrap: break-word; text-align: justify; color: #283039;">
+
+                    <p>This custom windbreaker jacket was made for teams, coaches, and die-hard supporters who don’t let the weather slow them down. Whether you're a player warming up on a windy day, or a coach or fan cheering from the sidelines in the rain, this custom rain jacket for men keeps you dry, mobile, and looking sharp. The lightweight fabric layers easily and moves with you, while full sublimation and screen print designs let you showcase your team’s identity with bold graphics, logos, and custom colors.
+</p>
+                  </div>
+                </div>
+
+
+              </div>
+
+            </div>
+<div class="w-full flex justify-end items-center gap-2 px-4 py-3 bg-white text-[#283039]">
+  <i class="fas fa-tshirt" style="font-size: 13px;"></i>
+  <span style="font-size: 13px; font-weight: 600;">Encore Product Development</span>
+</div>
+          </div>
+
+         
+        </div>
+      </div>
+
+      <!-- Sample Image Grid for Mobile -->
+      <div class="mt-8 block lg:hidden">
+        <h2 class="text-xl font-semibold text-indigo-950 mb-4"></h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="sample-img-container rounded-lg shadow-md overflow-hidden" onclick="openPopup('DSCF1571.jpg')">
+            <img src="DSCF1571.jpg" alt="Sample 1" class="sample-img" />
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus zoom-icon"></i>
+            </div>
+          </div>
+          <div class="sample-img-container rounded-lg shadow-md overflow-hidden" onclick="openPopup('DSCF1572.jpg')">
+            <img src="DSCF1572.jpg" alt="Sample 2" class="sample-img" />
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus zoom-icon"></i>
+            </div>
+          </div>
+          <div class="sample-img-container rounded-lg shadow-md overflow-hidden" onclick="openPopup('DSCF1573.jpg')">
+            <img src="DSCF1573.jpg" alt="Sample 3" class="sample-img" />
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus zoom-icon"></i>
+            </div>
+          </div>
+<div class="sample-img-container rounded-lg shadow-md overflow-hidden" onclick="openPopup('DSCF1574.jpg')">
+            <img src="DSCF1574.jpg" alt="Sample 3" class="sample-img" />
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus zoom-icon"></i>
+            </div>
+          </div>
+          <div class="sample-img-container rounded-lg shadow-md overflow-hidden" onclick="openPopup('DSCF1575.jpg')">
+            <img src="DSCF1575.jpg" alt="Sample 4" class="sample-img" />
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus zoom-icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+
+
+
+
+<footer class="w-full bg-[#333f48] text-white pt-12 pb-8 px-2">
+  <div class="w-full px-4 md:px-8 lg:px-12"><br><br>
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <!-- Left Column -->
+                <div class="space-y-4 footer-column">
+                    <h3 class="brand-name font-bold tracking-tight bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Custom Team Apparel</h3>
+                   
+
+<p class="tracking-[0.2em] text-xs font-medium uppercase opacity-90 flex items-center gap-2">
+                        <span class="inline-block w-4 h-0.5 bg-red-500"></span>
+                   RESOURCES
+                        <span class="inline-block w-4 h-0.5 bg-red-500"></span>
+                    </p>
+
+<div class="flex items-center">
+                  <i class="fas fa-paint-brush" style="font-size: 85%;"></i>
+             <h2 style="font-size: 13px;" class="hover:underline">&nbsp; Custom Artwork and Graphic Design</h2>
+
+                </div>
+
+
+<div class="flex items-center">
+                  <i class="fas fa-swatchbook" en-fabric-icon" style="font-size: 85%;"></i>
+                  <h2 style="font-size: 13px;" class="hover:underline" >&nbsp; Fabric Development</h2>
+                </div>
+
+<div class="flex items-center">
+                  <i class="fas fa-fill-drip" style="font-size: 85%;"></i>
+                  <h2 style="font-size: 13px;" class="hover:underline">&nbsp; Embellishment</h2>
+                </div>
+
+<div class="flex items-center">
+                  <i class="fas fa-box-open" style="font-size: 85%;"></i>
+                  <h2 style="font-size: 13px;" class="hover:underline">&nbsp; Teamstore and Door-to-Door Delivery</h2>
+                </div>
+
+                    <p class="text-sm opacity-90 leading-relaxed">Create your unique look with High-quality Custom gear</p>
+                    <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-3 mt-6">
+                        <button class="btn-action bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 px-6 py-3 rounded-full flex items-center justify-center gap-2 font-medium">
+                            <i class="fas fa-location-arrow"></i>
+                            <span>Let's Talk</span>
+                        </button> <br>
+                         <hr class="en-hr-gradient1">
+                    </div>
+                </div>
+
+                <!-- Center Column -->
+                <div class="space-y-4  md:text-left footer-column">
+                    <div class="mb-6">
+                        <div class=" ">
+
+                            <div class="">
+                               <span class="text-xs opacity-70"><img src="logo11.gif" alt="Encore Custom Logo" style="max-width: 220px; margin-bottom: 10px;" /></span> 
+                            </div>
+                           
+                        </div>
+                        <p class="text-sm opacity-90 mt-3 leading-relaxed max-w-md mx-auto md:mx-0">END-TO-END SOLUTIONS FOR HIGH QUALITY CUSTOM APPAREL
+</p>
+                        <div class="mt-4 flex ">
+                            <span class="text-xs uppercase tracking-widest opacity-80 border-b border-red-500 border-opacity-50 pb-1">for team and lifestyle</span>
+                        </div>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="">
+                            <i class="fas fa-envelope opacity-70"></i>
+                            <span>info@encorecustom.com</span>
+                        </div>
+                        <div class="">
+                            <i class="fas fa-phone opacity-70"></i>
+                            <span>+1 888-501-4999</span>
+                        </div>
+                        <div class="">
+                            <i class="fas fa-map-marker-alt opacity-70"></i>
+                            <span> 891 4th St, San Rafael,
+    CA 94901, USA</span>
+                        </div>
+                    </div>
+                   
+ <br><br> 
+
+
+ <div class="flex justify-center md:justify-start gap-5 pt-4">
+                        <a href="#" class="social-icon text-lg w-10 h-10 flex items-center justify-center rounded-full bg-white bg-opacity-10 hover:bg-opacity-20">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon text-lg w-10 h-10 flex items-center justify-center rounded-full bg-white bg-opacity-10 hover:bg-opacity-20">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                 
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="space-y-4 footer-column">
+                    <h3 class="brand-name">Seasonal Drops To Follow</h3>
+                    <p class="tracking-[0.2em] text-xs font-medium uppercase opacity-90 flex items-center gap-2">
+                        <span class="inline-block w-4 h-0.5 bg-red-500"></span>
+                    STAY IN TOUCH
+                        <span class="inline-block w-4 h-0.5 bg-red-500"></span>
+                    </p>
+                    <div class="relative">
+                        <input 
+                            type="email" 
+                            placeholder="Enter your email" 
+                            class="footer-input w-full bg-white bg-opacity-10 border border-white border-opacity-20 rounded-full py-3 px-5 text-white placeholder-white placeholder-opacity-60 focus:bg-opacity-20 transition-all duration-300"
+                        >
+                        <button class="subscribe-btn absolute right-1 top-1/2 transform -translate-y-1/2 bg-white text-[#333f48] p-2 rounded-full w-10 h-10 flex items-center justify-center">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <p class="italic text-sm opacity-80 mt-2">Subscribe Now!</p>
+<br><br><br><p style="letter-spacing: 0.6em; text-transform: uppercase; font-size: 12px; font-weight: 600; color: white; opacity: 0.7;">
+  E S T. N O W!
+</p>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Text -->
+            <div class="text-center text-xs opacity-60 pt-8 border-t border-white border-opacity-10 mt-8"><br>
+             <span class="text-xs uppercase tracking-widest opacity-80 border-b border-red-500 border-opacity-50 pb-1">vertically integrated globalized operation </span>   
+            </div>
+        </div><br><center>
+<img src="Flags-01.png" alt="Artwork Icon" style="width: 500px; vertical-align: middle; margin-right: 8px;">
+<br>
+
+<div class="text-center text-xs opacity-60 pt-8 border-t border-white border-opacity-10 mt-8">
+<p class="brand-name" style="text-align: center; font-size: 13px; color: #ffffff; font-family: 'Quicksand', sans-serif; margin-top: 20px;">
+
+  &copy; 2025 Encore Group LLC. All rights reserved.
+</p></center>
+<br><br><br><br>
+    </footer>
+
+
+
+
+
+    <!-- Image Popup -->
+    <div class="popup-overlay" id="imagePopup">
+      <div class="popup-content">
+        <button class="close-popup" onclick="closePopup()">&times;</button>
+        <img src="" alt="Popup Image" class="popup-img" id="popupImage" />
+      </div>
+    </div>
+
+    <!-- Popup Overlay (shared by all sections) -->
+    <div class="en-popup-overlay" id="en-popupOverlay">
+      <div class="en-popup-box" id="en-popupBox">
+        <button class="en-close-popup" id="en-closePopup" aria-label="Close popup">&times;</button>
+        <iframe class="en-popup-iframe" id="en-popupIframe" src=""></iframe>
+      </div>
+    </div>
+
+    <script>
+      // Main image gallery functionality
+      const images = [
+        "107.jpg", "108.jpg", "109.jpg", "110.jpg",
+        "112.jpg", "111.jpg", "113.jpg", "114.jpg"
+      ];
+
+      const mainImage = document.getElementById("mainProductImage");
+      const toggleBtn = document.getElementById("toggleSlideshow");
+      const thumbnailsContainer = document.querySelector(".thumbnails");
+      const upBtn = document.querySelector(".arrow-up");
+      const downBtn = document.querySelector(".arrow-down");
+
+      let currentIndex = 0;
+      let slideshowInterval;
+      let isPlaying = true;
+
+      let scrollIndex = 0; // for desktop scroll
+      const visibleCount = 4;
+      const totalThumbnails = images.length;
+
+      function setImage(index) {
+        currentIndex = index;
+        mainImage.src = images[index];
+        mainImage.classList.remove("fade-in");
+        void mainImage.offsetWidth;
+        mainImage.classList.add("fade-in");
+
+        document.querySelectorAll(".thumbnail-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+
+        const desktopThumbs = document.querySelectorAll(".thumbnails .thumbnail-btn");
+        const mobileThumbs = document.querySelectorAll(".thumbnails-mobile .thumbnail-btn");
+
+        if (desktopThumbs[index]) desktopThumbs[index].classList.add("active");
+        if (mobileThumbs[index]) mobileThumbs[index].classList.add("active");
+
+        scrollToThumbnail(index);
+      }
+
+      function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        setImage(currentIndex);
+      }
+
+      function startSlideshow() {
+        slideshowInterval = setInterval(nextImage, 3000);
+        isPlaying = true;
+        toggleBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      }
+
+      function stopSlideshow() {
+        clearInterval(slideshowInterval);
+        isPlaying = false;
+        toggleBtn.innerHTML = '<i class="fas fa-play"></i>';
+      }
+
+      toggleBtn.addEventListener("click", () => {
+        isPlaying ? stopSlideshow() : startSlideshow();
+      });
+
+      function scrollUp() {
+        if (scrollIndex > 0) {
+          scrollIndex--;
+          updateThumbnailScroll();
+        }
+      }
+
+      function scrollDown() {
+        if (scrollIndex < totalThumbnails - visibleCount) {
+          scrollIndex++;
+          updateThumbnailScroll();
+        }
+      }
+
+      function updateThumbnailScroll() {
+        const scrollAmount = scrollIndex * 96; // 80px height + 16px gap
+        thumbnailsContainer.style.transform = `translateY(-${scrollAmount}px)`;
+      }
+
+      function scrollToThumbnail(index) {
+        // Only for desktop view
+        if (window.innerWidth >= 1024) {
+          if (index < scrollIndex) {
+            scrollIndex = index;
+          } else if (index >= scrollIndex + visibleCount) {
+            scrollIndex = index - visibleCount + 1;
+          }
+          updateThumbnailScroll();
+        }
+      }
+
+      // Image popup functionality
+      function openPopup(imageSrc) {
+        const popup = document.getElementById("imagePopup");
+        const popupImage = document.getElementById("popupImage");
+
+        popupImage.src = imageSrc;
+        popup.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closePopup() {
+        const popup = document.getElementById("imagePopup");
+        popup.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      // Close popup when clicking outside the image
+      document.getElementById("imagePopup").addEventListener("click", function(e) {
+        if (e.target === this) {
+          closePopup();
+        }
+      });
+
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      mobileMenuButton.addEventListener('click', () => {
+        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+        mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+        mobileMenuButton.innerHTML = isExpanded
+          ? '<i class="fas fa-bars text-[#ffffff]"></i>'
+          : '<i class="fas fa-times text-[#ffffff]"></i>';
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && e.target !== mobileMenuButton) {
+          mobileMenu.classList.add('hidden');
+          mobileMenuButton.setAttribute('aria-expanded', 'false');
+          mobileMenuButton.innerHTML = '<i class="fas fa-bars text-[#ffffff]"></i>';
+        }
+      });
+
+      // Initialize
+      mobileMenuButton.setAttribute('aria-expanded', 'false');
+      setImage(0);
+      startSlideshow();
+
+      // Collapsible sections functionality
+      function toggleSection(sectionNum) {
+        const content = document.getElementById(`en-section-content-${sectionNum}`);
+        const icon = document.getElementById(`en-toggle-icon-${sectionNum}`);
+                        
+        content.classList.toggle('en-collapsed');
+        icon.classList.toggle('en-active');
+      }
+
+      // Fabric and embellishment selection
+      document.querySelectorAll('.en-fabric-option input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+          const sectionNum = this.name.split('-')[2];
+          const embellishSection = document.getElementById(`en-embellishment-section-${sectionNum}`);
+                                
+          // Remove selected class from all buttons in this section
+          document.querySelectorAll(`.en-section-${sectionNum} .en-fabric-btn`).forEach(btn => {
+            btn.classList.remove('en-selected');
+          });
+                                
+          // Add selected class to the clicked button
+          this.nextElementSibling.classList.add('en-selected');
+                                
+          // Show embellishment section
+          if (embellishSection) {
+            embellishSection.style.display = 'block';
+          }
+        });
+      });
+
+      // Embellishment button selection
+      document.querySelectorAll('.en-embellish-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const sectionNum = this.closest('.en-section').className.split(' ')[0].split('-')[2];
+                                
+          // Remove selected class from all embellishment buttons in this section
+          document.querySelectorAll(`.en-section-${sectionNum} .en-embellish-btn`).forEach(btn => {
+            btn.classList.remove('en-selected');
+          });
+                                
+          // Add selected class to the clicked button
+          this.classList.add('en-selected');
+        });
+      });
+
+      // Size selection
+      document.querySelectorAll('.en-size-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.en-size-btn').forEach(b => b.classList.remove('en-active'));
+          this.classList.add('en-active');
+        });
+      });
+
+      // Fit scale dragging functionality
+      const fitHandle = document.querySelector('.en-fit-handle');
+      const fitScale = document.querySelector('.en-fit-scale');
+      let isDragging = false;
+
+      fitHandle.addEventListener('mousedown', () => {
+        isDragging = false;
+        document.body.style.cursor = 'grabbing';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+                        
+        const scaleRect = fitScale.getBoundingClientRect();
+        let position = (e.clientX - scaleRect.left) / scaleRect.width;
+                        
+        // Constrain to scale boundaries
+        position = Math.max(0, Math.min(1, position));
+                        
+        fitHandle.style.left = `${position * 100}%`;
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        document.body.style.cursor = '';
+      });
+
+      // Fabric/Embellishment popup functionality
+      const enPopupOverlay = document.getElementById('en-popupOverlay');
+      const enPopupBox = document.getElementById('en-popupBox');
+      const enPopupIframe = document.getElementById('en-popupIframe');
+      const enClosePopup = document.getElementById('en-closePopup');
+
+      function showEnPopup(url) {
+        enPopupIframe.onload = () => {
+          try {
+            const iframeDocument = enPopupIframe.contentDocument || enPopupIframe.contentWindow.document;
+            const contentWidth = iframeDocument.body.scrollWidth;
+            const contentHeight = iframeDocument.body.scrollHeight;
+            const maxWidth = window.innerWidth * 0.95;
+            const maxHeight = window.innerHeight * 0.85;
+            const finalWidth = Math.min(contentWidth, maxWidth);
+            const finalHeight = Math.min(contentHeight, maxHeight);
+            enPopupIframe.style.width = finalWidth + 'px';
+            enPopupIframe.style.height = finalHeight + 'px';
+            enPopupBox.style.width = finalWidth + 'px';
+            enPopupBox.style.height = finalHeight + 'px';
+          } catch (e) {
+            enPopupIframe.style.width = '800px';
+            enPopupIframe.style.height = '90vh';
+            enPopupBox.style.width = '800px';
+            enPopupBox.style.height = '90vh';
+          }
+        };
+
+        enPopupIframe.src = url;
+        enPopupOverlay.style.display = 'flex';
+      }
+
+      enClosePopup.addEventListener('click', () => {
+        enPopupOverlay.style.display = 'none';
+        enPopupIframe.src = '';
+      });
+
+      // Handle fabric/embellishment button clicks
+      document.querySelectorAll('.en-fabric-btn, .en-embellish-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          // Don't trigger if clicking on radio input
+          if (e.target.tagName.toLowerCase() !== 'input') {
+            const url = this.getAttribute('data-url');
+            if (url) {
+              showEnPopup(url);
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

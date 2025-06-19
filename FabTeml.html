@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabrics</title>
+<script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            text-align: left;
+        }
+        .grid-container {
+          
+        }
+     .fabric-cell {
+   
+    padding: 15px;
+    box-sizing: border-box;
+    transition: background 0.3s ease-in-out;
+    margin-bottom: 14px;  
+    background: ;
+    border: 2px solid #;  
+    border-radius: 15px;  
+    overflow: hidden;  
+box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1); 
+
+}
+        .fabric-cell:hover {
+            background: #;  
+        }
+       .fabric-image {
+        position: relative;
+        width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .fabric-image img {
+        width: 100%;
+        display: block;
+        transition: opacity 0.3s ease-in-out; /* Fade effect */
+    }
+
+    /* Hide the hover image by default */
+    .fabric-image .image-hover {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+
+    /* Change image on hover */
+    .fabric-image:hover .image-main {
+        opacity: 0; /* Fade out the main image */
+
+    }
+
+    .fabric-image:hover .image-hover {
+        opacity: 1; /* Fade in the hover image */
+
+    }
+        .label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: red;
+            color: white;
+            padding: 5px 10px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+  
+            .fabric-title {
+       position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Teko', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 20px;
+    border-radius: 8px;
+    z-index: 2; /* Ensure title stays on top */
+    transition: opacity 0.3s ease-in-out; /* Smooth visibility transition */
+    }
+
+
+.fabric-image:hover .fabric-title {
+    opacity: 1;
+}
+      .fabric-info {
+    text-align: left;
+    margin-top: 2px;
+    font-size: 12px;
+    padding-left: 10px; /* Added gap from the left */
+   color: #333f48;
+
+}
+        .fabric-info ul {
+            list-style: none;
+            padding: 0;
+        }
+        .fabric-info ul li {
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+        .colors-section {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            margin-top: 20px;
+        }
+        .colors-section img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .show-colors-btn {
+            background: #2f3c48;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+   width: 100%;
+        }
+        .show-colors-btn:hover {
+            background: #ff0000;
+        }
+        .details p {
+            font-weight: bold;
+            font-size: 12px;
+            margin: 5px 0;
+        }
+        .details .sub-text {
+            font-size: 12px;
+            font-weight: normal;
+            color: #555;
+        }
+        .embellishment-labels {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .embellishment-label {
+            background: #e0e0e0;
+            color: #555;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+        .embellishment-label:hover {
+            background: #ccc;
+            color: #333;
+        }
+        .show-product-samples {
+            font-size: 14px;
+            color: #2f3c48;
+            cursor: pointer;
+            font-weight: ;
+            margin-top: 20px;
+            text-align: left;
+            width: 100%;
+            padding-right: 20px;
+
+
+        }
+        .show-product-samples:hover {
+            color: #ff0000;
+        }
+
+
+
+
+
+
+
+
+
+  .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #323f48;
+            color: white;
+            padding: 0px 00px;
+            text-align: center;
+          
+            z-index: 1000;
+        }
+
+        .content {
+            padding-top: 0px; /* Offset for fixed header */
+        }
+
+        
+
+        .video-banner {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .video-banner video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-banner .dark-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .video-banner .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            font-size: 5em;
+            font-family: 'Teko', sans-serif;
+            z-index: 2;
+        }
+
+        .video-banner .text-overlay button {
+            margin-top: 0;
+            padding: 10px 20px;
+            font-size: 0.35em;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Teko', sans-serif;
+        }
+
+        .fabric-development-section {
+            background-color: #EFEFEF;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .fabric-development-text {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.9em;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ .filter-container {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .filter-dropdown {
+            width: 250px;
+            height: 40px;
+            font-size: 15x;
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        .search-button {
+            width: 35px;
+            height: 35px;
+            background-color: #333;
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .search-button:hover {
+            background-color: #555;
+        }
+        .search-icon {
+            width: 30px;
+            height: 30px;
+        }
+
+
+
+
+
+     .dialog-box {
+            display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's above everything */
+        }
+        .dialog-box iframe {
+            width: 80%;
+    height: 80%;
+    border: none;
+    background: white;
+    z-index: 1001; /* Ensure iframe is interactive */
+        }
+        .dialog-box button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #333f48;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .dialog-box button:hover {
+            background: #ff0000;
+        }
+
+
+.inactive {
+    pointer-events: none; /* Disables interaction with background */
+    filter: blur(3px); /* Optional: Adds a blur effect */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .popup-content {
+            background-color: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .popup-overlay.active .popup-content {
+            transform: scale(1);
+        }
+        
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+        }
+        
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #ef4444;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s ease;
+        }
+        
+        .close-btn:hover {
+            background-color: #dc2626;
+            transform: rotate(90deg);
+        }
+        
+        .popup-header {
+            padding: 15px 20px;
+            background-color: #333F48;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.animated-button2 {
+  display: inline-block;
+  background: red;
+  color: white;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  border: 0 solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-button2::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    red,
+    orange,
+    yellow,
+    green,
+    skyblue,
+    blue,
+    violet,
+    red
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 5s linear infinite;
+  z-index: 0;
+  opacity: 1; /* Always visible */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.animated-button2:hover {
+  transform: scale(1.05);
+}
+
+.animated-button2 span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Gradient background animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+
+
+
+
+
+
+
+
+.circle-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.circle-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+
+
+
+
+
+
+
+
+
+  .circle-button-2 {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 2px solid white;
+      background-color: white;
+      cursor: pointer;
+      overflow: hidden;
+      padding: 0;
+      transition: box-shadow 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .circle-button-2 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      border-radius: 50%;
+    }
+
+    .circle-button-2:hover img {
+      transform: scale(1.15) rotate(360deg);
+    }
+
+    .circle-button-2:hover {
+      box-shadow: 0 6px 18px rgba(0, 123, 255, 0.4);
+  transform: scale(1.1);
+    }
+
+
+
+
+
+
+ .square-rounded-button-70 {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px; /* soft rounded corners */
+    border: 2px solid white;
+    background-color: white;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0;
+    transition: box-shadow 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .square-rounded-button-70 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    border-radius: 16px; /* match outer radius */
+  }
+
+  .square-rounded-button-70:hover img {
+    transform: scale(1.15) rotate(360deg);
+  }
+
+  .square-rounded-button-70:hover {
+    box-shadow: 0 6px 18px rgba(0, 123, 255, 0.4);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .animated-button {
+      display: inline-block;
+      background: red;
+      color: white;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+      border: 0px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .animated-button:hover {
+      color: #fff;
+      transform: scale(1.05);
+      animation: pulse-border 3s linear infinite;
+    }
+
+    .animated-button::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        red,
+        orange,
+        yellow,
+        green,
+        skyblue,
+        blue,
+        violet,
+        red
+      );
+      background-size: 400% 400%;
+      animation: gradientShift 5s linear infinite;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .animated-button:hover::before {
+      opacity: 1;
+    }
+
+    .animated-button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+
+
+    <!-- |---------------------------------------------------------| -->
+
+
+
+
+
+    <!-- Fabric 1: T E M P T E K -->
+
+<div class="fabric-cell">
+ <div class="fabric-image">
+             
+
+
+ 
+
+
+
+    <img src="tmp.jpg" alt="Fabric Image" class="image-main">
+<img src="tmp2.jpg" alt="Fabric Image" class="image-hover">
+       
+ <div class="fabric-title">T E M P T E K</div>
+</div><br>
+<div class="fabric-info">
+                <ul>
+                    <li>⚪ Named TempTek because it keeps you warm and dry
+ </li>
+		
+                    <li>⚪ Medium to heavy weight soft-shell fabric
+ </li>
+                    <li> ⚪ Original and best selling Samurai Jacket fabric
+</li>
+
+                    <li> ⚪ Best suited for embroidery and tackle twill embellishment
+</li>
+
+			<li>⚪ Water resistant, windproof & breathable
+ </li>
+
+<br>
+                </ul>
+
+            </div>
+
+ <div class="details">
+                <p>FABRIC COLORS&nbsp;  &nbsp;
+<br>
+
+</div>
+
+
+<img src="Tempt.png" alt="Color Swatch">
+
+
+
+
+ <!-- iiiiiiiii -->
+
+<div style="height: 10px; "></div>
+<span onclick="openPopup('popup7')" 
+      style="display: inline-block; background: #333f48; color: white; ; padding: 8px 10px; font-size: 14px; font-weight:  ; border-radius: 8px; margin-left: 0px; cursor: pointer; transition: background 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out, transform 0.3s ease-in-out;"
+      onmouseover="this.style.background='white'; this.style.color='#333f48'; this.style.borderColor='#333f48'; this.style.transform='scale(1.02)';" 
+
+      onmouseout="this.style.background='#333f48'; this.style.color='white'; this.style.borderColor='#333f48'; this.style.transform='scale(1)';">
+    Explore All Stock Colors
+</span>&nbsp;
+
+
+ <!-- iiiiiiiii -->
+
+
+<br>
+           
+
+
+
+
+
+ <div class="colors-section">
+             
+            </div>
+             <div class="details">
+                <p> OPACITY RATING <span style="font-size:12px; color:#2F3C48;">&nbsp;5/5 (Very opaque)</span>  </p>
+                <p class="sub-text">Opaque fabric with excellent coverage and protection.</p><div style="height: 5px; "></div>
+              <p> WEIGHT  </p>
+                <p class="sub-text">Medium to heavyweight, designed to keep you warm and dry.</p> <p class="sub-text">
+-
+ 
+GSM - 
+--
+</p><div style="height: 5px; "></div>
+                <p> EMBELLISHMENT TYPES </p>
+                <div class="embellishment-labels">
+                 
+                    <span class="embellishment-label">Screen Print</span>
+                    <span class="embellishment-label">Embroidery</span>
+                    <span class="embellishment-label">Heat Seal</span>
+                    <span class="embellishment-label">Applique</span>
+                    <span class="embellishment-label">Woven Label</span>
+ 
+                </div>
+            </div>
+
+<!-- 0000000000000000000 -->
+
+    
+
+<br>
+
+
+        </div>
+
+ <!-- end fab -->
+
+
+
+
+
+   
+
+
+   
+
+
+
+
+
+
+
+
+  <!-- Popup SS-->
+
+
+  <!-- W A R P T E K -->
+    <div id="popup1" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <span>Stock Colors - W A R P T E K &nbsp; Fabric </span>
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://encrpc.github.io/Final_Colors/ft/Warptek.html" allowfullscreen></iframe>
+                <div class="close-btn" onclick="closePopup('popup1')">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+  <!-- B A M B O O -->
+    <div id="popup2" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <span>Stock Colors - B A M B O O &nbsp; Fabric
+</span>
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://encrpc.github.io/Final_Colors/ColorBamboo.html" allowfullscreen></iframe>
+                <div class="close-btn" onclick="closePopup('popup2')">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+  <!-- F L E E C E -->
+    <div id="popup3" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <span>Stock Colors - F L E E C E &nbsp; Fabric</span>
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://encrpc.github.io/Final_Colors/ft/Fleece.html" allowfullscreen></iframe>
+                <div class="close-btn" onclick="closePopup('popup3')">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+  <!-- F R E N C H   T E R R Y 1 -->
+    <div id="popup4" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <span>Stock Colors - F R E N C H   T E R R Y &nbsp; Fabric</span>
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://encrpc.github.io/Final_Colors/ft/FrenchTerry.html" allowfullscreen></iframe>
+                <div class="close-btn" onclick="closePopup('popup4')">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  <!-- R I P T E K 1 -->
+    <div id="popup5" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <span>Stock Colors - R I P S T O P &nbsp; Fabric </span>
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://encrpc.github.io/Final_Colors/ft/Riptek.html" allowfullscreen></iframe>
+                <div class="close-btn" onclick="closePopup('popup5')">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  <!-- V E R S A T E K 1 -->
+    <div id="popup6" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <span>Stock Colors - V E R S A T E K &nbsp; Fabric</span>
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://encrpc.github.io/Final_Colors/versa.html" allowfullscreen></iframe>
+                <div class="close-btn" onclick="closePopup('popup6')">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  <!-- T E M P T E K 1 -->
+    <div id="popup7" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <span>Stock Colors  - T E M P T E K &nbsp; Fabric</span>
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://encrpc.github.io/Final_Colors/ColorTemptek.html" allowfullscreen></iframe>
+                <div class="close-btn" onclick="closePopup('popup7')">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  <!-- C O T T O N 1 -->
+    <div id="popup8" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <span>Stock Colors - C O T T O N &nbsp; Fabric </span>
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://encrpc.github.io/Final_Colors/ColorCotton.html" allowfullscreen></iframe>
+                <div class="close-btn" onclick="closePopup('popup8')">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  <!-- W A F F L E  K N I T 1 -->
+    <div id="popup9" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <span>Stock Colors - W A F F L E &nbsp;  K N I T &nbsp; Fabric</span>
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://encrpc.github.io/Final_Colors/wk.html" allowfullscreen></iframe>
+                <div class="close-btn" onclick="closePopup('popup9')">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  <!-- W A F F L E &nbsp;  J A C K 1 -->
+    <div id="popup10" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <span>Stock Colors - W A F F L E  J A C K &nbsp; Fabric</span>
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://encrpc.github.io/Final_Colors/wj.html" allowfullscreen></iframe>
+                <div class="close-btn" onclick="closePopup('popup10')">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  <!-- Popup SS END-->
+
+
+
+
+ <!-- end  -->
+
+
+
+
+
+ <!-- Dialog box for colors -->
+    <div class="dialog-box" id="colorsDialog">
+        <iframe src="sublimation.html"></iframe>
+        <button onclick="closeDialog()">Close</button>
+    </div>
+
+
+
+
+  
+
+
+<script>
+    // Open the dialog box
+    function openDialog() {
+        document.getElementById("colorsDialog").style.display = "flex";
+    }
+
+    // Close the dialog box
+    function closeDialog() {
+        document.getElementById("colorsDialog").style.display = "none";
+    }
+
+    // Close dialog if clicked outside of it
+    window.onclick = function(event) {
+        var dialog = document.getElementById("colorsDialog");
+        if (event.target === dialog) {
+            closeDialog();
+        }
+    };
+
+
+
+
+
+
+    // POPUPS
+
+function openPopup(popupId) {
+            document.getElementById(popupId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closePopup(popupId) {
+            document.getElementById(popupId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close popup when clicking outside content
+        document.querySelectorAll('.popup-overlay').forEach(popup => {
+            popup.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+        
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.popup-overlay').forEach(popup => {
+                    popup.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+
+
+
+
+
+
+
+
+    function openPopup(popupId) {
+            document.getElementById(popupId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closePopup(popupId) {
+            document.getElementById(popupId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close popup when clicking outside content
+        document.querySelectorAll('.popup-overlay').forEach(popup => {
+            popup.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+        
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.popup-overlay').forEach(popup => {
+                    popup.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
