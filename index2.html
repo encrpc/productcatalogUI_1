@@ -1191,6 +1191,141 @@ transform: scale(1.01);
           <div class="flex text-amber-400 mt-4 mb-2">
           
 
+ <!-- P.................................................................................................................................roduct Navigation Section-->
+
+<div style="
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+">
+  <!-- Left column -->
+  <div style="display: flex; align-items: center;">
+    <i class="fas fa-folder"
+       style="font-size: 1.4rem; color: #8799b2; position: relative; top: 2px;"></i>
+    <span style="font-size: 0.875rem; color: #4b5563; margin-left: 0.5rem;">
+      Lifestyle / Outerwear
+    </span>
+  </div>
+
+  <!-- Right column -->
+  <div style="display: flex; gap: 0.5rem;">
+    <!-- Home -->
+    <div style="position: relative;"
+         onmouseover="this.children[1].style.visibility='visible'"
+         onmouseout="this.children[1].style.visibility='hidden'">
+      <button style="
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        border: none;
+        background: #333F48;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, transform 0.2s;
+      "
+      onmouseover="this.style.background='#4e5960'; this.style.transform='scale(1.1)';"
+      onmouseout="this.style.background='#333F48'; this.style.transform='scale(1)';">
+        <i class="fas fa-home"></i>
+      </button>
+      <span style="
+        visibility: hidden;
+        position: absolute;
+        bottom: 110%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #333F48;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        z-index: 1;
+      ">Home</span>
+    </div>
+
+    <!-- Previous -->
+    <div style="position: relative;"
+         onmouseover="this.children[1].style.visibility='visible'"
+         onmouseout="this.children[1].style.visibility='hidden'">
+      <button style="
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        border: none;
+        background: #333F48;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, transform 0.2s;
+      "
+      onmouseover="this.style.background='#4e5960'; this.style.transform='scale(1.1)';"
+      onmouseout="this.style.background='#333F48'; this.style.transform='scale(1)';">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <span style="
+        visibility: hidden;
+        position: absolute;
+        bottom: 110%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #333F48;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        z-index: 1;
+      ">Previous product</span>
+    </div>
+
+    <!-- Next -->
+    <div style="position: relative;"
+         onmouseover="this.children[1].style.visibility='visible'"
+         onmouseout="this.children[1].style.visibility='hidden'">
+      <button style="
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        border: none;
+        background: #333F48;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, transform 0.2s;
+      "
+      onmouseover="this.style.background='#4e5960'; this.style.transform='scale(1.1)';"
+      onmouseout="this.style.background='#333F48'; this.style.transform='scale(1)';">
+        <i class="fas fa-arrow-right"></i>
+      </button>
+      <span style="
+        visibility: hidden;
+        position: absolute;
+        bottom: 110%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #333F48;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        z-index: 1;
+      ">Next product</span>
+    </div>
+  </div>
+</div>
+
+ <!-- END....................................................................................................................................................Product Navigation Section-->
+
+
  <br>
           </div>
           <div class="bg-indigo-50 rounded-xl p-4 mb-6">
