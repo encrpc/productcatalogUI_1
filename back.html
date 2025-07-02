@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Back Button</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .back-button {
+      padding: 10px 20px;
+      font-size: 46px;
+      background-color: #e5e7eb; /* Tailwind gray-200 */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .back-button:hover {
+      background-color: #d1d5db; /* Tailwind gray-300 */
+    }
+  </style>
+</head>
+<body>
+
+  <button class="back-button" onclick="history.back()">← Back</button>
+
+</body>
+</html>
